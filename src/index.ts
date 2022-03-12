@@ -14,6 +14,7 @@ const config: ServerConfig = {
   env,
   appIndex: Number(process.env.KIN_APP_INDEX),
   port: process.env.PORT || '7890',
+  webhookSecret: process.env.KIN_WEBHOOK_SECRET || '',
 }
 
 if (!config.airdropPrivateKey) {

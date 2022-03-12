@@ -41,9 +41,6 @@ export class KinClient {
       throw new Error(`Account '${destinationPublicKey.toBase58()}' is already funded: ${existing} Kin`)
     }
 
-    const tas = await kin.resolveTokenAccounts(destinationPublicKey)
-    const ta = tas[0]
-
     try {
       const tx = await kin.submitPayment({
         amount,
@@ -58,9 +55,7 @@ export class KinClient {
         tx: Buffer.from(tx).toString('hex'),
       }
     } catch (e) {
-      throw new Error(
-        `Account '${destinationPublicKey.toBase58()}' (ta: '${ta?.toBase58()}') something went wrong: ${e}`,
-      )
+      throw new Error(`Account '${destinationPublicKey.toBase58()}' something went wrong: ${e}`)
     }
   }
 
